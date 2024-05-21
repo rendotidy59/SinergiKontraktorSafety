@@ -1,0 +1,810 @@
+﻿@model SinergiKontraktorSafety.Models.DomainAdd.AddTabelSOTViewModel
+@{
+    Layout = "/Views/Main/Main.cshtml";
+}
+
+@section Style
+{
+    <link href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" rel="stylesheet" />
+    <link href="~/assets/vendor/libs/staper/bs-stepper.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+}
+
+
+
+
+<div class='container-xxl flex-grow-1 container-p-y'>
+    <div class="row">
+        <div class="col-12">
+            <h5>Safety Observation Tour</h5>
+        </div>
+
+      
+        <div class="col-12">
+            <a href="#" class="text-light fw-medium" onclick="goBack()">Halaman Sebelumnya</a>
+
+            <div class="bs-stepper wizard-vertical vertical">
+                <div class="bs-stepper-header gap-lg-2">
+                    <div class="step" data-target="#account-details-1">
+                        <button type="button" class="step-trigger">
+                            <span class="bs-stepper-circle"><i class="ri-check-line"></i></span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-number">01</span>
+                                <span class="d-flex flex-column gap-1 ms-2">
+                                    <span class="bs-stepper-title">Observation Details</span>
+                                    <span class="bs-stepper-subtitle">Add Observation Details</span>
+                                   
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#personal-info-1">
+                        <button type="button" class="step-trigger">
+                            <span class="bs-stepper-circle"><i class="ri-check-line"></i></span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-number">02</span>
+                                <span class="d-flex flex-column gap-1 ms-2">
+                                    <span class="bs-stepper-title">Hasil Observasi Info</span>
+                                    <span class="bs-stepper-subtitle">Add Hasil Observasi Info</span>
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#social-links-1">
+                        <button type="button" class="step-trigger">
+                            <span class="bs-stepper-circle"><i class="ri-check-line"></i></span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-number">03</span>
+                                <span class="d-flex flex-column gap-1 ms-2">
+                                    <span class="bs-stepper-title">Kondisi Pekerja</span>
+                                    <span class="bs-stepper-subtitle">Info Kondisi Pekerja</span>
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="line"></div>
+                    <div class="step" data-target="#kesimpulan-links-1">
+                        <button type="button" class="step-trigger">
+                            <span class="bs-stepper-circle"><i class="ri-check-line"></i></span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-number">04</span>
+                                <span class="d-flex flex-column gap-1 ms-2">
+                                    <span class="bs-stepper-title">Kesimpulan Observasi</span>
+                                    <span class="bs-stepper-subtitle">Info Kesimpulan Observasi</span>
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="line"></div>
+                    <div class="step" data-target="#point-links-1">
+                        <button type="button" class="step-trigger">
+                            <span class="bs-stepper-circle"><i class="ri-check-line"></i></span>
+                            <span class="bs-stepper-label">
+                                <span class="bs-stepper-number">05</span>
+                                <span class="d-flex flex-column gap-1 ms-2">
+                                    <span class="bs-stepper-title">Point Pembelajaran</span>
+                                    <span class="bs-stepper-subtitle">Info Point Pembelajaran</span>
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="bs-stepper-content">
+                    <form  action="/CSMS/AddSOT" method="post" enctype="multipart/form-data">
+                        <!-- Account Details -->
+                        <div id="account-details-1" class="content">
+                            <div class="content-header mb-3">
+                                <h6 class="mb-0">Observation Details</h6>
+                                <small>Input Your Observation Details.</small>
+                            </div>
+                            <div class="row g-4">
+                                <div class="card-body">
+                                   
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-fullname2" class="input-group-text"><i class="mdi mdi-office-building-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <select class="form-control js-example-tags" id="basic-icon-default-fullname" required asp-for="site" aria-label="Site / Direktorat" aria-describedby="basic-icon-default-fullname2">
+                                                    <option></option>
+                                                    <option value="Lhoknga Plant">Lhoknga Plant</option>
+                                                    <option value="Narogong Plant">Narogong Plant</option>
+                                                    <option value="Cilacap Plant">Cilacap Plant</option>
+                                                    <option value="Tuban Plant">Tuban Plant</option>
+                                                    <option value="Nathabumi">Nathabumi</option>
+                                                    <option value="SCM">SCM</option>
+                                                    <option value="ACM">ACM</option>
+                                                </select>
+                                                <label for="basic-icon-default-fullname">Site / Direktorat</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-date2" class="input-group-text"><i class="mdi mdi-calendar-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="date" id="basic-icon-default-date" class="form-control" required asp-for="tanggalobservasi" placeholder="Tanggal Observasi" aria-label="Select Date" aria-describedby="basic-icon-default-date2" />
+                                                <label for="basic-icon-default-date">Tanggal Observasi</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-fullname2" class="input-group-text"><i class="mdi mdi-office-building-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <select class="form-control js-example-tags" id="basic-icon-default-fullname" required asp-for="perusahaan" aria-label="Site / Direktorat" aria-describedby="basic-icon-default-fullname2">
+                                                    <option></option>
+                                                    <option value="PT.Solusi Bangun Indonesia">PT.Solusi Bangun Indonesia</option>
+                                                    <option value="PT.Semen Indonesia Logistic">PT.Semen Indonesia Logistic</option>
+                                                    <option value="PT.Varia Usaha Bahari">PT.Varia Usaha Bahari</option>
+                                                    <option value="PT.Wasaka Perkasa Jaya">PT.Wasaka Perkasa Jaya</option>
+                                                    <option value="PT.Dwi Mitra">PT.Dwi Mitra</option>
+
+
+                                                    <option value="PT.Pincuran Sinanjung Mas">PT.Pincuran Sinanjung Mas</option>
+                                                    <option value="PT.Rajawali Perkasa Sakti">PT.Rajawali Perkasa Sakti</option>
+                                                    <option value="PT.Buana Central Swakarsa">PT.Buana Central Swakarsa</option>
+                                                    <option value="PT.Global Sarana Sukses">PT.Global Sarana Sukses</option>
+
+                                                    <option value="PT.Sinar Jembar Perkasa">PT.Sinar Jembar Perkasa</option>
+                                                    <option value="PT.Escorindo Jasa Prima">PT.Escorindo Jasa Prima</option>
+                                                    <option value="PT.Samudra Indonesia">PT.Samudra Indonesia</option>
+                                                    <option value="PT.TALI">PT.TALI</option>
+                                                    <option value="PT.Sarana Karya Cemerlang">PT.Sarana Karya Cemerlang</option>
+                                                    <option value="PT Kereta Api Indonesia">PT Kereta Api Indonesia</option>
+
+
+                                                    <option value="PT.Mandiri Bangkit Jaya">PT.Mandiri Bangkit Jaya</option>
+                                                    <option value="PT.Bahari Eka Nusantara">PT.Bahari Eka Nusantara</option>
+                                                    <option value="PT.Kapuas Raya Pratama">PT.Kapuas Raya Pratama</option>
+                                                </select>
+                                                <label for="basic-icon-default-fullname">Perusahaan</label>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-date2" class="input-group-text"><i class="mdi mdi-map-marker-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="basic-icon-default-date" class="form-control" required asp-for="lokasi" placeholder="nama lokasi" aria-label="Select Date" aria-describedby="basic-icon-default-date2" />
+                                                <label for="basic-icon-default-date">Lokasi</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-message2" class="input-group-text"><i class="mdi mdi-message-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <textarea id="basic-icon-default-message" class="form-control" required asp-for="catatan" placeholder="Jelaskan Kegiatan/Pekerjaan yang sedang dilakukan *" aria-label="Jelaskan Kegiatan/Pekerjaan yang sedang dilakukan *" aria-describedby="basic-icon-default-message2" style="height: 60px;"></textarea>
+                                                <label for="basic-icon-default-message">Rincian</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-date2" class="input-group-text"><i class="mdi mdi-map-marker-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="basic-icon-default-date" class="form-control" required asp-for="namapeserta" placeholder="nama peserta" aria-label="Select Date" aria-describedby="basic-icon-default-date2" />
+                                                <label for="basic-icon-default-date">
+                                                    Peserta Observasi (Nama)
+                                                    *
+                                                </label>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                                <div class="col-12 d-flex justify-content-between">
+                                    <button class="btn btn-outline-secondary btn-prev" disabled>
+                                        <i class="ri-arrow-left-line me-sm-1 me-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-next"> <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i class="ri-arrow-right-line"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Personal Info -->
+                        <div id="personal-info-1" class="content">
+                            <div class="content-header mb-3">
+                                <h6 class="mb-0">
+                                    Perilaku Pekerja
+                                    *
+                                </h6>
+                                <small>Worker Behavior.</small>
+                            </div>
+                            <div class="row g-4">
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="ps-1" colspan="4">
+                                                    <p class="mb-0">Activity</p>
+                                                </th>
+                                                <th class="text-center">
+                                                    <p class="mb-0">Aman</p>
+                                                </th>
+                                                <th class="text-center">
+                                                    <p class="mb-0">Tidak Aman</p>
+                                                </th>
+                                                <th class="text-center">
+                                                    <p class="mb-0">Tidak Relevan</p>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="ps-1" colspan="4">
+                                                    <div class="my-auto">
+                                                        <span class="text-dark d-block text-sm">Identifikasi Bahaya</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input identifikasibahaya" type="checkbox"
+                                                               id="aman" value="Aman"  asp-for="identifikasibahaya" onclick="checkOnlyThis(this)">
+                                                        
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input identifikasibahaya" type="checkbox"
+                                                               id="tidakaman" value="Tidak Aman"  asp-for="identifikasibahaya" onclick="checkOnlyThis(this)">
+                                                       
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input identifikasibahaya" type="checkbox"
+                                                               id="tidakrelevan" value="Tidak Relevan"  asp-for="identifikasibahaya" onclick="checkOnlyThis(this)">
+                                                       
+                                                    </div>
+                                                </td>
+                                                <script>
+                                                    function checkOnlyThis(clickedCheckbox) {
+                                                        var checkboxes = document.getElementsByClassName('identifikasibahaya');
+                                                        for (var i = 0; i < checkboxes.length; i++) {
+                                                            if (checkboxes[i] !== clickedCheckbox) {
+                                                                checkboxes[i].checked = false;
+                                                            }
+                                                        }
+                                                    }
+
+                                                </script>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="ps-1" colspan="4">
+                                                    <div class="my-auto">
+                                                        <span class="text-dark d-block text-sm">Postur Tubuh/Ergonomi</span>
+
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input posturtubuhergonomosi" type="checkbox"
+                                                               id="posturtubuhergonomosi"  asp-for="posturtubuhergonomosi" value="Aman" onclick="checkOnlyThis2(this)">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input posturtubuhergonomosi" type="checkbox"
+                                                               id="posturtubuhergonomosi" asp-for="posturtubuhergonomosi" value="Tidak Aman" onclick="checkOnlyThis2(this)">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input posturtubuhergonomosi" type="checkbox"
+                                                               id="posturtubuhergonomosi" asp-for="posturtubuhergonomosi" value="Tidak Relevan" onclick="checkOnlyThis2(this)">
+                                                    </div>
+                                                </td>
+                                                <script>
+                                                    function checkOnlyThis2(clickedCheckbox) {
+                                                        var checkboxes = document.getElementsByClassName('posturtubuhergonomosi');
+                                                        for (var i = 0; i < checkboxes.length; i++) {
+                                                            if (checkboxes[i] !== clickedCheckbox) {
+                                                                checkboxes[i].checked = false;
+                                                            }
+                                                        }
+                                                    }
+
+                                                </script>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-1" colspan="4">
+                                                    <div class="my-auto">
+                                                        <span class="text-dark d-block text-sm">Penggunaan Alat Pelindung Diri</span>
+
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input alatpelindungdiri" type="checkbox"
+                                                               id="alatpelindungdiri" asp-for="alatpelindungdiri" value="Aman" onclick="checkOnlyThis3(this)">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input alatpelindungdiri" type="checkbox"
+                                                               id="alatpelindungdiri" asp-for="alatpelindungdiri" value="Tidak Aman" onclick="checkOnlyThis3(this)">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input alatpelindungdiri" type="checkbox"
+                                                               id="alatpelindungdiri" asp-for="alatpelindungdiri" value="Tidak Relevan" onclick="checkOnlyThis3(this)">
+                                                    </div>
+                                                </td>
+                                                <script>
+                                                    function checkOnlyThis3(clickedCheckbox) {
+                                                        var checkboxes = document.getElementsByClassName('alatpelindungdiri');
+                                                        for (var i = 0; i < checkboxes.length; i++) {
+                                                            if (checkboxes[i] !== clickedCheckbox) {
+                                                                checkboxes[i].checked = false;
+                                                            }
+                                                        }
+                                                    }
+
+                                                </script>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-1" colspan="4">
+                                                    <div class="my-auto">
+                                                        <p class="text-sm mb-0">Ketaatan Terhadap Aturan</p>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input ketaatanterhadapaturan" type="checkbox"
+                                                               id="ketaatanterhadapaturan" asp-for="ketaatanterhadapaturan" value="Aman" onclick="checkOnlyThis4(this)">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input ketaatanterhadapaturan" type="checkbox"
+                                                               id="ketaatanterhadapaturan" asp-for="ketaatanterhadapaturan" value="Tidak Aman" onclick="checkOnlyThis4(this)">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input ketaatanterhadapaturan" type="checkbox"
+                                                               id="ketaatanterhadapaturan" asp-for="ketaatanterhadapaturan" value="Tidak Relevan" onclick="checkOnlyThis4(this)">
+                                                    </div>
+                                                </td>
+                                                <script>
+                                                    function checkOnlyThis4(clickedCheckbox) {
+                                                        var checkboxes = document.getElementsByClassName('ketaatanterhadapaturan');
+                                                        for (var i = 0; i < checkboxes.length; i++) {
+                                                            if (checkboxes[i] !== clickedCheckbox) {
+                                                                checkboxes[i].checked = false;
+                                                            }
+                                                        }
+                                                    }
+
+                                                </script>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-12 d-flex justify-content-between">
+                                    <button class="btn btn-outline-secondary btn-prev">
+                                        <i class="ri-arrow-left-line me-sm-1 me-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-next"> <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i class="ri-arrow-right-line"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Social Links -->
+                        <div id="social-links-1" class="content">
+                            <div class="content-header mb-3">
+                                <h6 class="mb-0">Kondisi Pekerja</h6>
+                                <small>Enter worker conditions.</small>
+                            </div>
+                            <div class="row g-4">
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="ps-1" colspan="4">
+                                                    <p class="mb-0">Activity</p>
+                                                </th>
+                                                <th class="text-center">
+                                                    <p class="mb-0">Aman</p>
+                                                </th>
+                                                <th class="text-center">
+                                                    <p class="mb-0">Tidak Aman</p>
+                                                </th>
+                                                <th class="text-center">
+                                                    <p class="mb-0">Tidak Relevan</p>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="ps-1" colspan="4">
+                                                    <div class="my-auto">
+                                                        <span class="text-dark d-block text-sm">Kebersihan Lingkungan Kerja</span>
+
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input kebersihanlingkungankerja" value="Aman" type="checkbox" asp-for="kebersihanlingkungankerja" onclick="checkOnlyThis5(this)"
+                                                               id="aman">
+
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input kebersihanlingkungankerja" type="checkbox" onclick="checkOnlyThis5(this)"
+                                                               id="tidakaman" value="Tidak Aman" asp-for="kebersihanlingkungankerja">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input kebersihanlingkungankerja" type="checkbox" value="Tidak Relevan" asp-for="kebersihanlingkungankerja" onclick="checkOnlyThis5(this)"
+                                                               id="tidakrelevan">
+                                                    </div>
+                                                </td>
+                                                <script>
+                                                    function checkOnlyThis5(clickedCheckbox) {
+                                                        var checkboxes = document.getElementsByClassName('kebersihanlingkungankerja');
+                                                        for (var i = 0; i < checkboxes.length; i++) {
+                                                            if (checkboxes[i] !== clickedCheckbox) {
+                                                                checkboxes[i].checked = false;
+                                                            }
+                                                        }
+                                                    }
+
+                                                </script>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-1" colspan="4">
+                                                    <div class="my-auto">
+                                                        <span class="text-dark d-block text-sm">Kelayakan Peralatan Kerja</span>
+
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input kelayakanperalatankerja" type="checkbox" value="Aman" asp-for="kelayakanperalatankerja" onclick="checkOnlyThis6(this)"
+                                                               id="kelayakanperalatankerja">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input kelayakanperalatankerja" type="checkbox" value="Tidak Aman" asp-for="kelayakanperalatankerja" onclick="checkOnlyThis6(this)"
+                                                               id="kelayakanperalatankerja">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input kelayakanperalatankerja" type="checkbox" value="Tidak Relevan" asp-for="kelayakanperalatankerja" onclick="checkOnlyThis6(this)"
+                                                               id="kelayakanperalatankerja">
+                                                    </div>
+                                                </td>
+
+                                                <script>
+                                                    function checkOnlyThis6(clickedCheckbox) {
+                                                        var checkboxes = document.getElementsByClassName('kelayakanperalatankerja');
+                                                        for (var i = 0; i < checkboxes.length; i++) {
+                                                            if (checkboxes[i] !== clickedCheckbox) {
+                                                                checkboxes[i].checked = false;
+                                                            }
+                                                        }
+                                                    }
+
+                                                </script>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-1" colspan="4">
+                                                    <div class="my-auto">
+                                                        <span class="text-dark d-block text-sm">Pengawasan / Supervisi</span>
+
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input pengawasan" type="checkbox" value="Aman" asp-for="pengawasan" onclick="checkOnlyThis7(this)"
+                                                               id="flexSwitchCheckDefault17">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input pengawasan" type="checkbox" value="Tidak Aman" asp-for="pengawasan" onclick="checkOnlyThis7(this)"
+                                                               id="flexSwitchCheckDefault18">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input pengawasan" type="checkbox" value="Tidak Relevan" asp-for="pengawasan" onclick="checkOnlyThis7(this)"
+                                                               id="flexSwitchCheckDefault19">
+                                                    </div>
+                                                </td>
+                                                <script>
+                                                    function checkOnlyThis7(clickedCheckbox) {
+                                                        var checkboxes = document.getElementsByClassName('pengawasan');
+                                                        for (var i = 0; i < checkboxes.length; i++) {
+                                                            if (checkboxes[i] !== clickedCheckbox) {
+                                                                checkboxes[i].checked = false;
+                                                            }
+                                                        }
+                                                    }
+
+                                                </script>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-1" colspan="4">
+                                                    <div class="my-auto">
+                                                        <p class="text-sm mb-0">Komunikasi Safety</p>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input komunikasisafety" type="checkbox" value="Aman" asp-for="komunikasisafety" onclick="checkOnlyThis8(this)"
+                                                               id="flexSwitchCheckDefault20">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input komunikasisafety" type="checkbox" value="Tidak Aman" asp-for="komunikasisafety" onclick="checkOnlyThis8(this)"
+                                                               id="flexSwitchCheckDefault21">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input komunikasisafety" type="checkbox" value="Tidak Relevan" asp-for="komunikasisafety" onclick="checkOnlyThis8(this)"
+                                                               id="flexSwitchCheckDefault22">
+                                                    </div>
+                                                </td>
+
+                                                <script>
+                                                    function checkOnlyThis8(clickedCheckbox) {
+                                                        var checkboxes = document.getElementsByClassName('komunikasisafety');
+                                                        for (var i = 0; i < checkboxes.length; i++) {
+                                                            if (checkboxes[i] !== clickedCheckbox) {
+                                                                checkboxes[i].checked = false;
+                                                            }
+                                                        }
+                                                    }
+
+                                                </script>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-12 d-flex justify-content-between">
+                                    <button class="btn btn-outline-secondary btn-prev">
+                                        <i class="ri-arrow-left-line me-sm-1 me-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-next"> <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i class="ri-arrow-right-line"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- kesimpulan Links -->
+                        <div id="kesimpulan-links-1" class="content">
+                            <div class="content-header mb-3">
+                                <h6 class="mb-0">
+                                    Kesimpulan Observasi
+                                </h6>
+                                <small>Conclusion Observations.</small>
+                            </div>
+                            <div class="row g-4">
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="ps-1" colspan="4">
+                                                    <p class="mb-0">Action</p>
+                                                </th>
+                                                <th class="text-center">
+                                                    <p class="mb-0">Aman</p>
+                                                </th>
+                                                <th class="text-center">
+                                                    <p class="mb-0">Tidak Aman</p>
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="ps-1" colspan="4">
+                                                    <div class="my-auto">
+                                                        <span class="text-dark d-block text-sm">Pilih Salah Satu</span>
+
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input kesimpulanObservasi"  type="checkbox" value="Aman" asp-for="kesimpulanObservasi"
+                                                               id="flexSwitchCheckDefault11" onclick="checkOnlyThis9(this)">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch mb-0 d-flex align-items-center justify-content-center">
+                                                        <input class="form-check-input kesimpulanObservasi" type="checkbox" value="Tidak Aman" asp-for="kesimpulanObservasi"
+                                                               id="flexSwitchCheckDefault12" onclick="checkOnlyThis9(this)">
+                                                    </div>
+                                                </td>
+                                                <script>
+                                                    function checkOnlyThis9(clickedCheckbox) {
+                                                        var checkboxes = document.getElementsByClassName('kesimpulanObservasi');
+                                                        for (var i = 0; i < checkboxes.length; i++) {
+                                                            if (checkboxes[i] !== clickedCheckbox) {
+                                                                checkboxes[i].checked = false;
+                                                            }
+                                                        }
+                                                    }
+
+                                                </script>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="input-group input-group-merge mb-4">
+                                    <span id="basic-icon-default-message2" class="input-group-text"><i class="mdi mdi-message-outline"></i></span>
+                                    <div class="form-floating form-floating-outline">
+                                        <textarea id="basic-icon-default-message" class="form-control" required asp-for="kesimpulan" placeholder="Jelaskan Kesesuaian atau Ketidaksesuaian yang Terjadi" aria-label="Jelaskan Kesesuaian atau Ketidaksesuaian yang Terjadi" aria-describedby="basic-icon-default-message2" style="height: 60px;"></textarea>
+                                        <label for="basic-icon-default-message">Kesimpulan</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-between">
+                                    <button class="btn btn-outline-secondary btn-prev">
+                                        <i class="ri-arrow-left-line me-sm-1 me-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-next"> <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i class="ri-arrow-right-line"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- point Links -->
+                        <div id="point-links-1" class="content">
+                            <div class="content-header mb-3">
+                                <h6 class="mb-0">
+                                    Point Pembelajaran
+                                </h6>
+                                <small>Learning Points.</small>
+                            </div>
+                            <div class="row g-4">
+
+                                <div class="input-group input-group-merge mb-4">
+                                    <span id="basic-icon-default-message2" class="input-group-text"><i class="mdi mdi-message-outline"></i></span>
+                                    <div class="form-floating form-floating-outline">
+                                        <textarea id="basic-icon-default-message" class="form-control" required asp-for="pointpembelajaran" placeholder="Jelaskan Poin Pembelajaran Dari Sisi Anda" aria-label="Jelaskan Kesesuaian atau Ketidaksesuaian yang Terjadi" aria-describedby="basic-icon-default-message2" style="height: 60px;"></textarea>
+                                        <label for="basic-icon-default-message">Poin Pembelajaran</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-group input-group-merge mb-4">
+                                    <span id="basic-icon-default-upload2" class="input-group-text"><i class="mdi mdi-upload-outline"></i></span>
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="file" id="basic-icon-default-upload" class="form-control"  name="file" aria-label="Upload File" aria-describedby="basic-icon-default-upload2" style="height: 60px;">
+                                        <label for="basic-icon-default-upload">Upload File</label>
+                                    </div>
+                                </div>
+
+                                <div class="content-header mb-3">
+                                    <h6 class="mb-0">
+                                        Apakah Membutuhkan Action Lanjutan?
+                                        *
+                                    </h6>
+                                </div>
+                                <div class="input-group input-group-merge mb-4">
+                                    <div class="form-check me-5">
+                                        <input class="form-check-input" type="radio" asp-for="action" value="Ya" id="customRadio1">
+                                        <label class="custom-control-label" for="customRadio1">Ya</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" asp-for="action" value="No" id="customRadio2">
+                                        <label class="custom-control-label" for="customRadio2">Tidak</label>
+                                    </div>
+                                </div>
+                              
+                                
+                                <div class="col-12 d-flex justify-content-between">
+                                    <button class="btn btn-outline-secondary btn-prev">
+                                        <i class="ri-arrow-left-line me-sm-1 me-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <!-- /Modern Vertical Wizard -->
+    </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts
+{
+    <script src="~/assets/vendor/libs/staper/bs-stepper.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("form").addEventListener("submit", function (event) {
+                document.querySelector("#submit-btn").classList.add("d-none");
+                document.querySelector(".btn-loading").classList.remove("d-none");
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.js-example-tags').select2({
+                tags: true
+            });
+        });
+    </script>
+    <script>
+        const wizardVertical = document.querySelector(".wizard-vertical");
+
+        if (typeof wizardVertical !== undefined && wizardVertical !== null) {
+            const wizardVerticalBtnNextList = [].slice.call(wizardVertical.querySelectorAll('.btn-next')),
+                wizardVerticalBtnPrevList = [].slice.call(wizardVertical.querySelectorAll('.btn-prev')),
+                wizardVerticalBtnSubmit = wizardVertical.querySelector('.btn-submit');
+
+            const numberedVerticalStepper = new Stepper(wizardVertical, {
+                linear: false
+            });
+            if (wizardVerticalBtnNextList) {
+                wizardVerticalBtnNextList.forEach(wizardVerticalBtnNext => {
+                    wizardVerticalBtnNext.addEventListener('click', event => {
+                        numberedVerticalStepper.next();
+                    });
+                });
+            }
+            if (wizardVerticalBtnPrevList) {
+                wizardVerticalBtnPrevList.forEach(wizardVerticalBtnPrev => {
+                    wizardVerticalBtnPrev.addEventListener('click', event => {
+                        numberedVerticalStepper.previous();
+                    });
+                });
+            }
+            if (wizardVerticalBtnSubmit) {
+                wizardVerticalBtnSubmit.addEventListener('click', event => {
+                    alert('Submitted..!!');
+                });
+            }
+        }
+    </script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+  
+}

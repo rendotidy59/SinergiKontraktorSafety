@@ -1,0 +1,464 @@
+﻿@model SinergiKontraktorSafety.Models.DomainAdd.AddTabelHazardReportViewModel
+@{
+    Layout = "/Views/Main/Main.cshtml";
+}
+
+@section Style
+{
+    <link href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" rel="stylesheet" />
+    <link href="~/assets/vendor/libs/staper/bs-stepper.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+}
+
+
+
+
+<div class='container-xxl flex-grow-1 container-p-y'>
+
+
+
+
+
+
+    <div class="row">
+        <div class="col-12">
+            <h5>Life Seaving Audit</h5>
+        </div>
+
+
+        <div class="col-12">
+            <a href="#" class="text-light fw-medium" onclick="goBack()">Halaman Sebelumnya</a>
+
+            <div class="bs-stepper wizard-icons wizard-icons-example mt-2">
+                <div class="bs-stepper-header" hidden>
+                    <div class="step" data-target="#account-details">
+                        <button type="button" class="step-trigger">
+
+                            <span class="bs-stepper-label">Life Seaving Audit Detail</span>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="bs-stepper-content">
+                    <form onSubmit="return false">
+                        <!-- Account Details -->
+                        <div id="account-details" class="content">
+                            <div class="content-header mb-3">
+                                <h6 class="mb-0">Life Seaving Audit Details</h6>
+                                <small>Input Your Life Seaving Audit Details.</small>
+                            </div>
+                            <div class="row g-4">
+                                <div class="card-body">
+                                    <form>
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-fullname2" class="input-group-text"><i class="mdi mdi-office-building-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <select class="form-control js-example-tags" id="basic-icon-default-fullname" asp-for="site" aria-label="Site / Direktorat" aria-describedby="basic-icon-default-fullname2">
+                                                    <option></option>
+                                                    <option value="Lhoknga Plant">Lhoknga Plant</option>
+                                                    <option value="Narogong Plant">Narogong Plant</option>
+                                                    <option value="Cilacap Plant">Cilacap Plant</option>
+                                                    <option value="Tuban Plant">Tuban Plant</option>
+                                                    <option value="Nathabumi">Nathabumi</option>
+                                                    <option value="SCM">SCM</option>
+                                                    <option value="ACM">ACM</option>
+                                                </select>
+                                                <label for="basic-icon-default-fullname">Site / Direktorat</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-date2" class="input-group-text"><i class="mdi mdi-calendar-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="date" id="basic-icon-default-date" class="form-control" name="tanggalobservasi" placeholder="tanggal lapor" aria-label="Select Date" aria-describedby="basic-icon-default-date2" />
+                                                <label for="basic-icon-default-date">Tanggal Lapor</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-fullname2" class="input-group-text"><i class="mdi mdi-office-building-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <select class="form-control js-example-tags" id="basic-icon-default-fullname" asp-for="site" aria-label="Site / Direktorat" aria-describedby="basic-icon-default-fullname2">
+                                                    <option></option>
+                                                    <option value="PT.Solusi Bangun Indonesia">PT.Solusi Bangun Indonesia</option>
+                                                    <option value="PT.Semen Indonesia Logistic">PT.Semen Indonesia Logistic</option>
+                                                    <option value="PT.Varia Usaha Bahari">PT.Varia Usaha Bahari</option>
+                                                    <option value="PT.Wasaka Perkasa Jaya">PT.Wasaka Perkasa Jaya</option>
+                                                    <option value="PT.Dwi Mitra">PT.Dwi Mitra</option>
+
+
+                                                    <option value="PT.Pincuran Sinanjung Mas">PT.Pincuran Sinanjung Mas</option>
+                                                    <option value="PT.Rajawali Perkasa Sakti">PT.Rajawali Perkasa Sakti</option>
+                                                    <option value="PT.Buana Central Swakarsa">PT.Buana Central Swakarsa</option>
+                                                    <option value="PT.Global Sarana Sukses">PT.Global Sarana Sukses</option>
+
+                                                    <option value="PT.Sinar Jembar Perkasa">PT.Sinar Jembar Perkasa</option>
+                                                    <option value="PT.Escorindo Jasa Prima">PT.Escorindo Jasa Prima</option>
+                                                    <option value="PT.Samudra Indonesia">PT.Samudra Indonesia</option>
+                                                    <option value="PT.TALI">PT.TALI</option>
+                                                    <option value="PT.Sarana Karya Cemerlang">PT.Sarana Karya Cemerlang</option>
+                                                    <option value="PT Kereta Api Indonesia">PT Kereta Api Indonesia</option>
+
+
+                                                    <option value="PT.Mandiri Bangkit Jaya">PT.Mandiri Bangkit Jaya</option>
+                                                    <option value="PT.Bahari Eka Nusantara">PT.Bahari Eka Nusantara</option>
+                                                    <option value="PT.Kapuas Raya Pratama">PT.Kapuas Raya Pratama</option>
+                                                </select>
+                                                <label for="basic-icon-default-fullname">Perusahaan</label>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-date2" class="input-group-text"><i class="mdi mdi-map-marker-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="text" id="basic-icon-default-date" class="form-control" asp-for="lokasi" placeholder="nama lokasi" aria-label="Select Date" aria-describedby="basic-icon-default-date2" />
+                                                <label for="basic-icon-default-date">Lokasi</label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-message2" class="input-group-text"><i class="mdi mdi-message-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <textarea id="basic-icon-default-message" class="form-control" asp-for="catatan" placeholder="Jelaskan deskripsi bahaya *" aria-label="Jelaskan Kegiatan/Pekerjaan yang sedang dilakukan *" aria-describedby="basic-icon-default-message2" style="height: 60px;"></textarea>
+                                                <label for="basic-icon-default-message">Deskripsi Bahaya</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-fullname2" class="input-group-text"><i class="mdi mdi-office-building-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <select class="form-control js-example-tags" id="basic-icon-default-fullname" asp-for="site" aria-label="Site / Direktorat" aria-describedby="basic-icon-default-fullname2">
+                                                    <option></option>
+                                                    <option value="Peralatan/MEsin">Peralatan/Mesin</option>
+                                                    <option value="Lingkungan">Lingkungan</option>
+                                                    <option value="Material">Material</option>
+                                                    <option value="Orang">Orang</option>
+
+                                                </select>
+                                                <label for="basic-icon-default-fullname">Jenis Bahaya</label>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-message2" class="input-group-text"><i class="mdi mdi-message-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <textarea id="basic-icon-default-message" class="form-control" asp-for="catatan" placeholder="Jelaskan Tindakannya *" aria-label="Jelaskan Kegiatan/Pekerjaan yang sedang dilakukan *" aria-describedby="basic-icon-default-message2" style="height: 60px;"></textarea>
+                                                <label for="basic-icon-default-message">Tindakan Yang Sudah Dilakukan</label>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="input-group input-group-merge mb-4">
+                                            <span id="basic-icon-default-upload2" class="input-group-text"><i class="mdi mdi-upload-outline"></i></span>
+                                            <div class="form-floating form-floating-outline">
+                                                <input type="file" id="basic-icon-default-upload" class="form-control" name="file" aria-label="Upload File" aria-describedby="basic-icon-default-upload2" style="height: 60px;">
+                                                <label for="basic-icon-default-upload">Upload File</label>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="content-header mb-3">
+                                            <h6 class="mb-0">
+                                                Apakah Membutuhkan Action Lanjutan?
+                                                *
+                                            </h6>
+                                        </div>
+                                        <div class="input-group input-group-merge mb-4">
+                                            <div class="form-check me-5">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio1">
+                                                <label class="custom-control-label" for="customRadio1">Ya</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio2">
+                                                <label class="custom-control-label" for="customRadio2">Tidak</label>
+                                            </div>
+                                        </div>
+
+
+                                    </form>
+                                </div>
+                                <div class="col-12 d-flex justify-content-between">
+                                    <button class="btn btn-outline-secondary btn-prev" disabled>
+                                        <i class="ri-arrow-left-line me-sm-1 me-0"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-next"> <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i class="ri-arrow-right-line"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Personal Info -->
+                        <div id="personal-info-icon" class="content">
+                            <div class="content-header mb-3">
+                                <h6 class="mb-0">Dokument Izin Kerja</h6>
+                                <small>Enter Your Personal Info.</small>
+                            </div>
+                            <div class="row g-4">
+                                <div class="col-sm-6">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="text" id="first-name" class="form-control" placeholder="John" />
+                                        <label for="first-name">First Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="text" id="last-name" class="form-control" placeholder="Doe" />
+                                        <label for="last-name">Last Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating form-floating-outline">
+                                        <select class="select2" id="country">
+                                            <option label=" "></option>
+                                            <option>UK</option>
+                                            <option>USA</option>
+                                            <option>Spain</option>
+                                            <option>France</option>
+                                            <option>Italy</option>
+                                            <option>Australia</option>
+                                        </select>
+                                        <label for="country">Country</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating form-floating-outline">
+                                        <select class="selectpicker w-auto" id="language" data-style="btn-transparent" data-tick-icon="ri-check-line text-white" multiple>
+                                            <option>English</option>
+                                            <option>French</option>
+                                            <option>Spanish</option>
+                                        </select>
+                                        <label for="language">Language</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-between">
+                                    <button class="btn btn-outline-secondary btn-prev">
+                                        <i class="ri-arrow-left-line me-sm-1"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-next"> <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i class="ri-arrow-right-line"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Address -->
+                        <div id="address" class="content">
+                            <div class="content-header mb-3">
+                                <h6 class="mb-0">Address</h6>
+                                <small>Enter Your Address.</small>
+                            </div>
+                            <div class="row g-4">
+                                <div class="col-sm-6">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="text" class="form-control" id="address-input" placeholder="98  Borough bridge Road, Birmingham">
+                                        <label for="address-input">Address</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="text" class="form-control" id="landmark" placeholder="Borough bridge">
+                                        <label for="landmark">Landmark</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="text" class="form-control" id="pincode" placeholder="658921">
+                                        <label for="pincode">Pincode</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="text" class="form-control" id="city" placeholder="Birmingham">
+                                        <label for="city">City</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-between">
+                                    <button class="btn btn-outline-secondary btn-prev">
+                                        <i class="ri-arrow-left-line me-sm-1"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-next"> <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i class="ri-arrow-right-line"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Social Links -->
+                        <div id="social-links" class="content">
+                            <div class="content-header mb-3">
+                                <h6 class="mb-0">Social Links</h6>
+                                <small>Enter Your Social Links.</small>
+                            </div>
+                            <div class="row g-4">
+                                <div class="col-sm-6">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="text" id="twitter" class="form-control" placeholder="https://twitter.com/abc" />
+                                        <label for="twitter">Twitter</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="text" id="facebook" class="form-control" placeholder="https://facebook.com/abc" />
+                                        <label for="facebook">Facebook</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="text" id="google" class="form-control" placeholder="https://plus.google.com/abc" />
+                                        <label for="google">Google+</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating form-floating-outline">
+                                        <input type="text" id="linkedin" class="form-control" placeholder="https://linkedin.com/abc" />
+                                        <label for="linkedin">Linkedin</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-between">
+                                    <button class="btn btn-outline-secondary btn-prev">
+                                        <i class="ri-arrow-left-line me-sm-1"></i>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-next"> <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span> <i class="ri-arrow-right-line"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Review -->
+                        <div id="review-submit" class="content">
+
+                            <p class="fw-medium mb-2">Account</p>
+                            <ul class="list-unstyled">
+                                <li>Username</li>
+                                <li>exampl@email.com</li>
+                            </ul>
+                            <hr>
+                            <p class="fw-medium mb-2">Personal Info</p>
+                            <ul class="list-unstyled">
+                                <li>First Name</li>
+                                <li>Last Name</li>
+                                <li>Country</li>
+                                <li>Language</li>
+                            </ul>
+                            <hr>
+                            <p class="fw-medium mb-2">Address</p>
+                            <ul class="list-unstyled">
+                                <li>Address</li>
+                                <li>Landmark</li>
+                                <li>Pincode</li>
+                                <li>City</li>
+                            </ul>
+                            <hr>
+                            <p class="fw-medium mb-2">Social Links</p>
+                            <ul class="list-unstyled">
+                                <li>https://twitter.com/abc</li>
+                                <li>https://facebook.com/abc</li>
+                                <li>https://plus.google.com/abc</li>
+                                <li>https://linkedin.com/abc</li>
+                            </ul>
+                            <div class="col-12 d-flex justify-content-between">
+                                <button class="btn btn-outline-secondary btn-prev">
+                                    <i class="ri-arrow-left-line me-sm-1"></i>
+                                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                </button>
+                                <button class="btn btn-primary btn-submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <!-- /Modern Vertical Wizard -->
+    </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts
+{
+    <script src="~/assets/vendor/libs/staper/bs-stepper.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("form").addEventListener("submit", function (event) {
+                document.querySelector("#submit-btn").classList.add("d-none");
+                document.querySelector(".btn-loading").classList.remove("d-none");
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.js-example-tags').select2({
+                tags: true
+            });
+        });
+    </script>
+    <script>
+        const wizardIcons = document.querySelector('.wizard-icons-example');
+
+        if (typeof wizardIcons !== undefined && wizardIcons !== null) {
+            const wizardIconsBtnNextList = [].slice.call(wizardIcons.querySelectorAll('.btn-next')),
+                wizardIconsBtnPrevList = [].slice.call(wizardIcons.querySelectorAll('.btn-prev')),
+                wizardIconsBtnSubmit = wizardIcons.querySelector('.btn-submit');
+
+            const iconsStepper = new Stepper(wizardIcons, {
+                linear: false
+            });
+            if (wizardIconsBtnNextList) {
+                wizardIconsBtnNextList.forEach(wizardIconsBtnNext => {
+                    wizardIconsBtnNext.addEventListener('click', event => {
+                        iconsStepper.next();
+                    });
+                });
+            }
+            if (wizardIconsBtnPrevList) {
+                wizardIconsBtnPrevList.forEach(wizardIconsBtnPrev => {
+                    wizardIconsBtnPrev.addEventListener('click', event => {
+                        iconsStepper.previous();
+                    });
+                });
+            }
+            if (wizardIconsBtnSubmit) {
+                wizardIconsBtnSubmit.addEventListener('click', event => {
+                    alert('Submitted..!!');
+                });
+            }
+        }
+    </script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+}

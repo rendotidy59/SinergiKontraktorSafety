@@ -1,0 +1,400 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en"
+      class='light-style layout-menu-fixed '
+      data-theme="theme-default" data-assets-path='/'
+      data-framework="aspnetcore-mvc"
+      data-template='vertical-menu-aspnet-core-mvc-template-free'>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Dashboard - Sinergi Kontraktor</title>
+    <meta name="description" content="" />
+
+    
+    <!-- Core Styles -->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Fonts & Flag icons -->
+    <link rel="stylesheet" href="/vendor/fonts/materialdesignicons.css" />
+    <link rel="stylesheet" href="/vendor/libs/node-waves/node-waves.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="/css/demo.css" />
+
+    <!-- `perfect-scrollbar` library required by SideNav plugin -->
+    <link rel="stylesheet" href="/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Application stylesheets -->
+    <link rel="stylesheet" href="/css/site.css" />
+
+
+
+
+
+    <!-- Vendor Styles -->
+
+    <link rel="stylesheet" href="/vendor/libs/apex-charts/apex-charts.css" />
+
+
+    <!-- Page Styles -->
+    <!-- Include Scripts for customizer, helper, analytics, config -->
+
+    <script src="/vendor/js/helpers.js"></script>
+    <script src="/js/config.js"></script>
+    <link rel="stylesheet" href="/vendor/libs/animate-css/animate.css">
+
+
+    @await RenderSectionAsync("Style", required: false)
+</head>
+
+<body>
+    <!-- Layout Content -->
+
+
+
+
+
+
+
+    <div class='layout-wrapper layout-content-navbar '>
+        <div class='layout-container'>
+
+
+            <!-- Menu -->
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+
+                <div class='app-brand demo '>
+                    <a class="app-brand-link" href="/Dashboard/Index">
+                        <img src="/img/kontraktorlogo3.png" height="50" width="200" />
+                    </a>
+
+                    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+                        <i class="mdi menu-toggle-icon d-xl-block align-middle mdi-20px"></i>
+                    </a>
+                </div>
+
+                <div class="menu-inner-shadow"></div>
+
+                <ul class="menu-inner py-1">
+                    <!-- Dashboards -->
+                    <li class='menu-item active open'>
+                        <a href="javascript:void(0);" class="menu-link menu-toggle bg-info">
+                            <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
+                            <div>Dashboards</div>
+                        </a>
+                        <ul class="menu-sub">
+                        </ul>
+                    </li>
+
+
+                    <li class="menu-header fw-medium mt-4">
+                        <span class="menu-header-text">App</span>
+                    </li>
+                    <!-- Apps -->
+                    <li class='menu-item'>
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-email-outline"></i>
+                            <div>Email</div>
+                        </a>
+                    </li>
+
+                    <li class='menu-item'>
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-calendar-blank-outline"></i>
+                            <div>Calendar</div>
+                        </a>
+                    </li>
+
+
+                    <li class='menu-item '>
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons mdi mdi-lock-open-outline"></i>
+                            <div>Authentications</div>
+                        </a>
+                        <ul class="menu-sub">
+
+                            <li class='menu-item '>
+                                <a class="menu-link" href="#">
+                                    <div>Change Password</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Components -->
+                    <li class="menu-header fw-medium mt-4"><span class="menu-header-text">Menu</span></li>
+                    <!-- Cards -->
+                    <!-- User interface -->
+                    <li class='menu-item'>
+                        <a href="javascript:void(0)" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons mdi mdi-archive-outline"></i>
+                            <div>VSL</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class='menu-item'>
+                                <a class="menu-link" href="/CSMS/SOT">
+                                    <div>Safety Observation Tour (SOT)</div>
+                                </a>
+                            </li>
+                            <li class='menu-item'>
+                                <a class="menu-link" href="/CSMS/HazardReport">
+                                    <div>Hazard Report</div>
+                                </a>
+                            </li>
+                            <li class='menu-item'>
+                                <a class="menu-link" href="/CSMS/ToolboxMeeting">
+                                    <div>Toolbox Meeting</div>
+                                </a>
+                            </li>
+                            <li class='menu-item'>
+                                <a class="menu-link" href="/CSMS/LSA">
+                                    <div>LSA</div>
+                                </a>
+                            </li>
+                            <li class='menu-item'>
+                                <a class="menu-link" href="/CSMS/TO">
+                                    <div>TO</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class='menu-item'>
+                        <a href="javascript:void(0)" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons mdi mdi-archive-outline"></i>
+                            <div>e- Learning</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class='menu-item'>
+                                <a class="menu-link" href="/CSMS/eLearning">
+                                    <div>Create e-Learning</div>
+                                </a>
+                            </li>
+                            <li class='menu-item'>
+                                <a class="menu-link" href="#">
+                                    <div>e-Learning Report</div>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    
+                    <li class='menu-item'>
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-file-document-multiple-outline"></i>
+                            <div>Monthly Reporting</div>
+                        </a>
+                    </li>
+                    <!-- Misc -->
+                    <li class="menu-header fw-medium mt-4"><span class="menu-header-text">Otoritas</span></li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-lifebuoy"></i>
+                            <div>Log</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-file-document-multiple-outline"></i>
+                            <div>Management</div>
+                        </a>
+                    </li>
+                    <li class='menu-item'>
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-calendar-blank-outline"></i>
+                            <div>Master Kontraktor</div>
+                        </a>
+                    </li>
+                </ul>
+
+            </aside>
+            <!-- / Menu -->
+            <!-- Layout page -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                <nav class='layout-navbar navbar-detached container-xxl navbar navbar-expand-xl align-items-center bg-navbar-theme'
+                     id="layout-navbar">
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                            <i class="mdi mdi-menu mdi-24px"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+                        <!-- Search -->
+                        <div class="navbar-nav align-items-center">
+                            <div class="nav-item d-flex align-items-center">
+                                <i class="mdi mdi-magnify mdi-24px lh-0"></i>
+                                <input type="text" class="form-control border-0 shadow-none bg-body" placeholder="Search..." aria-label="Search...">
+                            </div>
+                        </div>
+                        <!-- /Search -->
+
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+                            <!-- Place this tag where you want the button to render. -->
+                            <!-- User -->
+                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow p-0" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <div class="avatar avatar-online">
+                                        <img src="/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle">
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end mt-3 py-2">
+                                    <li>
+                                        <a class="dropdown-item pb-2 mb-1" href="javascript:void();">
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0 me-2 pe-1">
+                                                    <div class="avatar avatar-online">
+                                                        <img src="/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle">
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mb-0">@User.Identity.Name</h6>
+                                                    
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider my-1"></div>
+                                    </li>
+
+                                    <li>
+                                        <div class="dropdown-divider my-1"></div>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#flipInXAnimationModal">
+                                            <i class="mdi mdi-power me-1 mdi-20px"></i>
+                                            <span class="align-middle">Log Out</span>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!--/ User -->
+
+                        </ul>
+                    </div>
+
+                </nav>
+
+
+                <div class="modal animate__animated animate__flipInX" id="flipInXAnimationModal" tabindex="-1" aria-labelledby="flipInXAnimationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Form Logout</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                </button>
+                            </div>
+                            @using System.Security.Claims
+                            @{
+                                var email = User.Identity.IsAuthenticated ? User.FindFirst(ClaimTypes.Email)?.Value : string.Empty;
+                            }
+                            <form role="form" class="text-start" action="/Home/Logout" method="post">
+
+                                <input type="text" name="email" value="@email" hidden />
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0 btn-kirim" id="submit-btn">
+                                        Logout
+                                    </button>
+                                    <button type="submit" class="btn bg-gradient-succsess w-100 mt-4 mb-0 btn-loading d-none" disabled>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        Data Sedang Diproses...
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- / Navbar -->
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+
+                    <h4 class="py-3 mb-4">
+                        <span class="text-muted fw-light">@ViewBag.menu/</span> @ViewBag.submenu
+                    </h4>
+
+                 
+
+                    @RenderBody()
+                  
+                   
+                </div>
+                <!--/ Content wrapper -->
+            </div>
+            <!-- / Layout page -->
+        </div>
+
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+        <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+        <div class="drag-target"></div>
+    </div>
+
+    <!--/ Layout Content -->
+    <!-- Core Scripts -->
+
+    <script src="/vendor/libs/jquery/jquery.js"></script>
+    <script src="/vendor/libs/popper/popper.js"></script>
+    <script src="/vendor/js/bootstrap.js"></script>
+    <!-- `perfect-scrollbar` library required by SideNav plugin -->
+    <script src="/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="/vendor/libs/node-waves/node-waves.js"></script>
+    <script src="/vendor/js/menu.js"></script>
+    <script src="/js/site.js"></script>
+
+
+
+
+    <!-- Vendor Scripts -->
+
+    <script src="/vendor/libs/apex-charts/apexcharts.js"></script>
+
+
+
+
+
+    <!-- Main JS-->
+    <script src='/js/main.js'></script>
+
+    <!-- Page Scripts-->
+
+    <script src="/js/dashboards-analytics.js"></script>
+
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+    <!-- Visual Studio Browser Link -->
+    <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="4faee97160ec42cb986d30a2511233ab" data-requestMappingFromServer="false" data-connectUrl="http://localhost:64004/38a69b09f55c4bed9fd913a240762348/browserLink"></script>
+    <!-- End Browser Link -->
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("form").addEventListener("submit", function (event) {
+                document.querySelector("#submit-btn").classList.add("d-none");
+                document.querySelector(".btn-loading").classList.remove("d-none");
+            });
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

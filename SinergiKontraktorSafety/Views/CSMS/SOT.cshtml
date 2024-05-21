@@ -1,0 +1,117 @@
+﻿@{
+    Layout = "/Views/Main/Main.cshtml";
+}
+
+@section Style
+
+{
+    <link href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" rel="stylesheet" />
+}
+
+
+<div class='container-xxl flex-grow-1 container-p-y'>
+
+    <div class="card">
+        <div class="pb-0 card-header border-bottom">
+            <div class="mb-3 d-sm-flex align-items-center">
+                <div>
+                    <h6 class="mb-0 text-lg font-weight-semibold">Data SOT</h6>
+                    <p class="mb-2 text-sm mb-sm-0">Contractor Safety Management System</p>
+                </div>
+
+            </div>
+
+            <div class="d-flex ms-auto">
+                <button type="button" class="btn btn-secondary me-1">Cetak</button>
+                <a href="/CSMS/TambahSot" class="btn btn-dark me-1">Tambah</a>
+
+            </div>
+        </div>
+        
+
+        <div class="card-datatable table-responsive pt-0">
+            <table id="example" class="display" style="width:100%">
+
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>List</th>
+                        <th>Site</th>
+                        <th>Perusahaan</th>
+                        <th>Lokasi</th>
+                        <th>Peserta</th>
+                        <th>Tanggal</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int counter = 1;
+                    }
+                    @foreach (var item in Model.data)
+                    {
+                        <tr class="rowClickable" data-id="@item.Id">
+                            <th scope="row">@counter</th>
+                            <td class="text-sm font-weight-normal">@item.catatan</td>
+                            <td class="text-sm font-weight-normal">@item.site</td>
+                            <td class="text-sm font-weight-normal">@item.perusahaan</td>
+                            <td class="text-sm font-weight-normal">@item.lokasi</td>
+                            <td class="text-sm font-weight-normal">@item.namapeserta</td>
+                            <td class="text-sm font-weight-normal">@item.tanggalobservasi?.ToString("yyyy-MM-dd")</td>
+                            <td class="text-sm font-weight-normal">
+
+                                <a href="@Url.Action("EditHasil", "CSMS", new { id = item.Id })" class="btn btn-danger">Hapus</a>
+                            </td>
+                        </tr>
+                        counter++;
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    
+</div>
+
+
+
+@section Scripts
+{
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+
+    <script>
+
+        new DataTable('#example');
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.rowClickable').click(function () {
+                var id = $(this).data('id');
+                window.location.href = '@Url.Action("ViewSot", "CSMS")?id=' + encodeURIComponent(id);
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

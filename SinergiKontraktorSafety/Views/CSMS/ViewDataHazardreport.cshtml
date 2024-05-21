@@ -1,0 +1,369 @@
+﻿@model SinergiKontraktorSafety.Models.DomainEdit.EditTabelHazardReportViewModel
+@{
+    Layout = "/Views/Main/Main.cshtml";
+}
+@section Style
+{
+    <link href="~/css/viewsot.css" rel="stylesheet" />
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <div class="row gy-4">
+
+        <div class="col-xl-8 col-lg-7 align-self-end mt-md-5 mt-lg-4 pt-md-2 pt-lg-0">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4 text-truncate">@Model.userid!</h4>
+                            <p class="mb-0">Site @Model.site.<br> Lokasi @Model.lokasi</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 position-relative text-center">
+                        <img src="/img/illustrations/404.png" class="card-img-position bottom-0 w-auto end-0 scaleX-n1-rtl" alt="View Profile">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="col-xl-4 col-lg-5">
+            <div class="row gy-4">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <div class="avatar">
+                                <div class="avatar-initial bg-info rounded-circle shadow">
+                                    <i class="mdi mdi-office-building mdi-24px"></i>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn p-0" type="button" id="transactionsID" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-office-building mdi-24px"></i>
+
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionsID">
+                                    <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Update</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <h6 class="mb-2">Perusahaan</h6>
+                            <div class="d-flex flex-wrap mb-2 gap-2 pb-1 align-items-center">
+                                <small class="mb-0">@Model.perusahaan</small>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <div class="avatar">
+                                <div class="avatar-initial bg-success rounded-circle shadow">
+                                    <i class="mdi mdi-email mdi-24px"></i>
+
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn p-0" type="button" id="revenueID" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-email mdi-24px"></i>
+
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="revenueID">
+                                    <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Update</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <h6 class="mb-2">Email</h6>
+                            <div class="d-flex flex-wrap mb-2 pb-1 align-items-center gap-2">
+                                @if (Model.list != null && Model.list.Any())
+                                {
+                                    <small class="mb-0">@Model.list.First().email</small>
+                                }
+                                else
+                                {
+                                    <small class="mb-0">No Email Available</small>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+</div>
+
+    <hr class="my-2">
+
+    <<div class="row gy-4">
+  
+    <div class="bs-stepper wizard-icons wizard-icons-example mt-2">
+        <div class="bs-stepper-header" hidden>
+            <div class="step" data-target="#account-details">
+                <button type="button" class="step-trigger">
+
+                    <span class="bs-stepper-label">Hazard Report Detail</span>
+                </button>
+            </div>
+
+        </div>
+        <div class="bs-stepper-content">
+            <form action="/CSMS/UpdateDataHazardReport" method="post" enctype="multipart/form-data">
+                <!-- Account Details -->
+                <input  type="text" value="@Model.Id" asp-for="Id" hidden/>
+                <div id="account-details" class="content">
+                   
+                    <div class="row g-4">
+                        <div class="card-body">
+
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-fullname2" class="input-group-text"><i class="mdi mdi-office-building-outline"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control js-example-tags" id="basic-icon-default-fullname" required asp-for="site" aria-label="Site / Direktorat" aria-describedby="basic-icon-default-fullname2">
+                                        <option></option>
+                                        <option value="Lhoknga Plant">Lhoknga Plant</option>
+                                        <option value="Narogong Plant">Narogong Plant</option>
+                                        <option value="Cilacap Plant">Cilacap Plant</option>
+                                        <option value="Tuban Plant">Tuban Plant</option>
+                                        <option value="Nathabumi">Nathabumi</option>
+                                        <option value="SCM">SCM</option>
+                                        <option value="ACM">ACM</option>
+                                    </select>
+                                    <label for="basic-icon-default-fullname">Site / Direktorat</label>
+                                </div>
+
+                            </div>
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-date2" class="input-group-text"><i class="mdi mdi-calendar-outline"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <input type="date" id="basic-icon-default-date" class="form-control" required asp-for="tanggalLapor" placeholder="tanggal lapor" aria-label="Select Date" aria-describedby="basic-icon-default-date2" />
+                                    <label for="basic-icon-default-date">Tanggal Lapor</label>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-fullname2" class="input-group-text"><i class="mdi mdi-office-building-outline"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control js-example-tags" id="basic-icon-default-fullname" required asp-for="perusahaan" aria-label="Site / Direktorat" aria-describedby="basic-icon-default-fullname2">
+                                        <option></option>
+                                        <option value="PT.Solusi Bangun Indonesia">PT.Solusi Bangun Indonesia</option>
+                                        <option value="PT.Semen Indonesia Logistic">PT.Semen Indonesia Logistic</option>
+                                        <option value="PT.Varia Usaha Bahari">PT.Varia Usaha Bahari</option>
+                                        <option value="PT.Wasaka Perkasa Jaya">PT.Wasaka Perkasa Jaya</option>
+                                        <option value="PT.Dwi Mitra">PT.Dwi Mitra</option>
+
+
+                                        <option value="PT.Pincuran Sinanjung Mas">PT.Pincuran Sinanjung Mas</option>
+                                        <option value="PT.Rajawali Perkasa Sakti">PT.Rajawali Perkasa Sakti</option>
+                                        <option value="PT.Buana Central Swakarsa">PT.Buana Central Swakarsa</option>
+                                        <option value="PT.Global Sarana Sukses">PT.Global Sarana Sukses</option>
+
+                                        <option value="PT.Sinar Jembar Perkasa">PT.Sinar Jembar Perkasa</option>
+                                        <option value="PT.Escorindo Jasa Prima">PT.Escorindo Jasa Prima</option>
+                                        <option value="PT.Samudra Indonesia">PT.Samudra Indonesia</option>
+                                        <option value="PT.TALI">PT.TALI</option>
+                                        <option value="PT.Sarana Karya Cemerlang">PT.Sarana Karya Cemerlang</option>
+                                        <option value="PT Kereta Api Indonesia">PT Kereta Api Indonesia</option>
+
+
+                                        <option value="PT.Mandiri Bangkit Jaya">PT.Mandiri Bangkit Jaya</option>
+                                        <option value="PT.Bahari Eka Nusantara">PT.Bahari Eka Nusantara</option>
+                                        <option value="PT.Kapuas Raya Pratama">PT.Kapuas Raya Pratama</option>
+                                    </select>
+                                    <label for="basic-icon-default-fullname">Perusahaan</label>
+                                </div>
+
+                            </div>
+
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-date2" class="input-group-text"><i class="mdi mdi-map-marker-outline"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" id="basic-icon-default-date" class="form-control" required asp-for="lokasi" placeholder="nama lokasi" aria-label="Select Date" aria-describedby="basic-icon-default-date2" />
+                                    <label for="basic-icon-default-date">Lokasi</label>
+                                </div>
+                            </div>
+
+
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-message2" class="input-group-text"><i class="mdi mdi-message-outline"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <textarea id="basic-icon-default-message" class="form-control" required asp-for="catatan" placeholder="Jelaskan deskripsi bahaya *" aria-label="Jelaskan Kegiatan/Pekerjaan yang sedang dilakukan *" aria-describedby="basic-icon-default-message2" style="height: 60px;"></textarea>
+                                    <label for="basic-icon-default-message">Deskripsi Bahaya</label>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-fullname2" class="input-group-text"><i class="mdi mdi-office-building-outline"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <select class="form-control js-example-tags" id="basic-icon-default-fullname" required asp-for="JenisBahaya" aria-label="Site / Direktorat" aria-describedby="basic-icon-default-fullname2">
+                                        <option></option>
+                                        <option value="Peralatan/MEsin">Peralatan/Mesin</option>
+                                        <option value="Lingkungan">Lingkungan</option>
+                                        <option value="Material">Material</option>
+                                        <option value="Orang">Orang</option>
+
+                                    </select>
+                                    <label for="basic-icon-default-fullname">Jenis Bahaya</label>
+                                </div>
+
+                            </div>
+
+
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-message2" class="input-group-text"><i class="mdi mdi-message-outline"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <textarea id="basic-icon-default-message" class="form-control" required asp-for="Tindakan" placeholder="Jelaskan Tindakannya *" aria-label="Jelaskan Kegiatan/Pekerjaan yang sedang dilakukan *" aria-describedby="basic-icon-default-message2" style="height: 60px;"></textarea>
+                                    <label for="basic-icon-default-message">Tindakan Yang Sudah Dilakukan</label>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-upload2" class="input-group-text"><i class="mdi mdi-upload-outline"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <input type="file" id="basic-icon-default-upload" class="form-control" required name="file" aria-label="Upload File" aria-describedby="basic-icon-default-upload2" style="height: 60px;">
+                                    <label for="basic-icon-default-upload">Upload File</label>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="content-header mb-3">
+                                <h6 class="mb-0">
+                                    Apakah Membutuhkan Action Lanjutan?
+                                    *
+                                </h6>
+                            </div>
+                            <div class="input-group input-group-merge mb-4">
+                                <div class="form-check me-5">
+                                    <input class="form-check-input" type="radio" asp-for="ActionLanjutan" value="Ya" id="customRadio1">
+                                    <label class="custom-control-label" for="customRadio1">Ya</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" asp-for="ActionLanjutan" value="Tidak" id="customRadio2">
+                                    <label class="custom-control-label" for="customRadio2">Tidak</label>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-12 d-flex justify-content-between">
+                            <button class="btn btn-outline-secondary btn-prev" disabled>
+                                <i class="ri-arrow-left-line me-sm-1 me-0"></i>
+                                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                            </button>
+                            <button class="btn btn-info" type="submit"> <span class="align-middle d-sm-inline-block d-none me-sm-1">Simpan Perubahan</span> <i class="ri-arrow-right-line"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Personal Info -->
+            
+            </form>
+        </div>
+    </div>
+
+</div>
+</div>
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+    @*  <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ambil data dari ViewBag
+            const countAman = @ViewBag.CountAman;
+            const countTidakAman = @ViewBag.CountTidakAman;
+            const countTidakRelevan = @ViewBag.CountTidakRelevan;
+
+            // Referensi ke canvas elemen
+            const ctx = document.getElementById('salesDonutChart').getContext('2d');
+
+            // Membuat grafik donut menggunakan Chart.js
+            const salesDonutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Aman', 'Tidak Aman', 'Tidak Relevan'],
+                    datasets: [{
+                        label: 'Safety Observation Tour (SOT) Actions',
+                        data: [countAman, countTidakAman, countTidakRelevan],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',   // Warna untuk Aman
+                            'rgba(255, 99, 132, 0.2)',   // Warna untuk Tidak Aman
+                            'rgba(255, 206, 86, 0.2)'    // Warna untuk Tidak Relevan
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',     // Warna border untuk Aman
+                            'rgba(255, 99, 132, 1)',     // Warna border untuk Tidak Aman
+                            'rgba(255, 206, 86, 1)'      // Warna border untuk Tidak Relevan
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script> *@
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mengambil data dari ViewBag
+            const countAman = @ViewBag.CountAman;
+            const countTidakAman = @ViewBag.CountTidakAman;
+            const countTidakRelevan = @ViewBag.CountTidakRelevan;
+
+            // Debugging
+            console.log('Data for chart:', countAman, countTidakAman, countTidakRelevan);
+
+            // Konfigurasi chart
+            var options = {
+                chart: {
+                    height: 300,
+                    type: 'donut'
+                },
+                series: [countAman, countTidakAman, countTidakRelevan],
+                labels: ['Aman', 'Tidak Aman', 'Tidak Relevan'],
+                colors: ['#4caf50', '#f44336', '#ff9800'],
+                dataLabels: {
+                    enabled: true
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            };
+
+            // Inisialisasi dan render chart
+            var chart = new ApexCharts(document.querySelector("#totalSalesDonutChart"), options);
+            chart.render();
+        });
+    </script>
+}

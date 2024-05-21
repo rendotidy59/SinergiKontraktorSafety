@@ -1,0 +1,654 @@
+﻿@model SinergiKontraktorSafety.Models.DomainEdit.EditTabelSOTViewModel
+@{
+    Layout = "/Views/Main/Main.cshtml";
+}
+@section Style
+{
+    <link href="~/css/viewsot.css" rel="stylesheet" />
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <div class="row gy-4">
+
+        <div class="col-xl-8 col-lg-7 align-self-end mt-md-5 mt-lg-4 pt-md-2 pt-lg-0">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4 text-truncate">Peserta @Model.namapeserta!</h4>
+                            <p class="mb-0">Site @Model.site.<br> Lokasi @Model.lokasi</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 position-relative text-center">
+                        <img src="/img/illustrations/404.png"  class="card-img-position bottom-0 w-auto end-0 scaleX-n1-rtl" alt="View Profile">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="col-xl-4 col-lg-5">
+            <div class="row gy-4">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <div class="avatar">
+                                <div class="avatar-initial bg-info rounded-circle shadow">
+                                    <i class="mdi mdi-office-building mdi-24px"></i>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn p-0" type="button" id="transactionsID" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-office-building mdi-24px"></i>
+
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionsID">
+                                    <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Update</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <h6 class="mb-2">Perusahaan</h6>
+                            <div class="d-flex flex-wrap mb-2 gap-2 pb-1 align-items-center">
+                                <small class="mb-0">@Model.perusahaan</small>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <div class="avatar">
+                                <div class="avatar-initial bg-success rounded-circle shadow">
+                                    <i class="mdi mdi-email mdi-24px"></i>
+
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn p-0" type="button" id="revenueID" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="mdi mdi-email mdi-24px"></i>
+
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="revenueID">
+                                    <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Update</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <h6 class="mb-2">Email</h6>
+                            <div class="d-flex flex-wrap mb-2 pb-1 align-items-center gap-2">
+                                @if (Model.list != null && Model.list.Any())
+                                {
+                                    <small class="mb-0">@Model.list.First().email</small>
+                                }
+                                else
+                                {
+                                    <small class="mb-0">No Email Available</small>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6 ">
+            <div class="card h-100">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title m-0 me-2">Perilaku Pekerja</h5>
+                    <div class="dropdown">
+                    
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="p-0 m-0">
+                        <li class="d-flex mb-4 pb-2">
+                            <div class="me-2 pe-1">
+                                <div class="avatar flex-shrink-0">
+                                    <div class="avatar-initial bg-label-danger rounded">
+                                        <div>
+                                            <img src="/img/dokicon.png" alt="paypal" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                <div class="me-2">
+                                    <h6 class="mb-0">Identifikasi Bahaya</h6>
+                                </div>
+                                @{
+                                    string iconClass = "";
+                                    if (Model.identifikasibahaya == "Aman")
+                                    {
+                                        iconClass = "mdi-chevron-up text-success";
+                                    }
+                                    else if (Model.identifikasibahaya == "Tidak Aman")
+                                    {
+                                        iconClass = "mdi-chevron-down text-danger";
+                                    }
+                                    else if (Model.identifikasibahaya == "Tidak Relevan")
+                                    {
+                                        iconClass = "mdi-chevron-right text-warning";
+                                    }
+                                    else
+                                    {
+                                        iconClass = "mdi-chevron-right text-secondary";
+                                    }
+                                }
+                                <div class="user-progress d-flex align-items-center gap-3">
+                                    <h6 class="mb-0">@Model.identifikasibahaya</h6>
+                                    <i class='mdi mdi-24px @iconClass'></i>
+                                </div>
+
+                            </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-2">
+                            <div class="me-2 pe-1">
+                                <div class="avatar flex-shrink-0">
+                                    <div class="avatar-initial bg-label-success rounded">
+                                        <div>
+                                            <img src="/img/dokicon.png" alt="paypal" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                <div class="me-2">
+                                    <h6 class="mb-0">Postur Tubuh/Ergonomi</h6>
+                                 
+                                </div>
+                                @{
+                                    string posturtubuhergonomosi = "";
+                                    if (Model.posturtubuhergonomosi == "Aman")
+                                    {
+                                        posturtubuhergonomosi = "mdi-chevron-up text-success";
+                                    }
+                                    else if (Model.posturtubuhergonomosi == "Tidak Aman")
+                                    {
+                                        posturtubuhergonomosi = "mdi-chevron-down text-danger";
+                                    }
+                                    else if (Model.posturtubuhergonomosi == "Tidak Relevan")
+                                    {
+                                        posturtubuhergonomosi = "mdi-chevron-right text-warning";
+                                    }
+                                    else
+                                    {
+                                        posturtubuhergonomosi = "mdi-chevron-right text-secondary";
+                                    }
+                                }
+                                <div class="user-progress d-flex align-items-center gap-3">
+                                    <h6 class="mb-0">@Model.posturtubuhergonomosi</h6>
+                                    <i class='mdi mdi-chevron-down mdi-24px @posturtubuhergonomosi'></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-2">
+                            <div class="me-2 pe-1">
+                                <div class="avatar flex-shrink-0">
+                                    <div class="avatar-initial bg-label-warning rounded">
+                                        <div>
+                                            <img src="/img/dokicon.png" alt="paypal" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                <div class="me-2">
+                                    <h6 class="mb-0">Penggunaan Alat Pelindung Diri</h6>
+                                </div>
+                                @{
+                                    string alatpelindungdiri = "";
+                                    if (Model.alatpelindungdiri == "Aman")
+                                    {
+                                        alatpelindungdiri = "mdi-chevron-up text-success";
+                                    }
+                                    else if (Model.alatpelindungdiri == "Tidak Aman")
+                                    {
+                                        alatpelindungdiri = "mdi-chevron-down text-danger";
+                                    }
+                                    else if (Model.alatpelindungdiri == "Tidak Relevan")
+                                    {
+                                        alatpelindungdiri = "mdi-chevron-right text-warning";
+                                    }
+                                    else
+                                    {
+                                        alatpelindungdiri = "mdi-chevron-right text-secondary";
+                                    }
+                                }
+                                <div class="user-progress d-flex align-items-center gap-3">
+                                    <h6 class="mb-0">@Model.alatpelindungdiri</h6>
+                                    <i class='mdi mdi-chevron-down mdi-24px @alatpelindungdiri'></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-2">
+                            <div class="me-2 pe-1">
+                                <div class="avatar flex-shrink-0">
+                                    <div class="avatar-initial bg-label-primary rounded">
+                                        <div>
+                                            <img src="/img/dokicon.png" alt="paypal" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                <div class="me-2">
+                                    <h6 class="mb-0">Ketaatan Terhadap Aturan</h6>
+                                </div>
+                                @{
+                                    string ketaatanterhadapaturan = "";
+                                    if (Model.ketaatanterhadapaturan == "Aman")
+                                    {
+                                        ketaatanterhadapaturan = "mdi-chevron-up text-success";
+                                    }
+                                    else if (Model.ketaatanterhadapaturan == "Tidak Aman")
+                                    {
+                                        ketaatanterhadapaturan = "mdi-chevron-down text-danger";
+                                    }
+                                    else if (Model.ketaatanterhadapaturan == "Tidak Relevan")
+                                    {
+                                        ketaatanterhadapaturan = "mdi-chevron-right text-warning";
+                                    }
+                                    else
+                                    {
+                                        ketaatanterhadapaturan = "mdi-chevron-right text-secondary";
+                                    }
+                                }
+                                <div class="user-progress d-flex align-items-center gap-3">
+                                    <h6 class="mb-0">@Model.ketaatanterhadapaturan</h6>
+                                    <i class='mdi mdi-chevron-down mdi-24px @ketaatanterhadapaturan'></i>
+                                </div>
+                            </div>
+                        </li>
+                   
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-xl-4 col-md-6 ">
+            <div class="card h-100">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title m-0 me-2">Kondisi Pekerja</h5>
+                    <div class="dropdown">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="p-0 m-0">
+                        <li class="d-flex mb-4 pb-2">
+                            <div class="me-2 pe-1">
+                                <div class="avatar flex-shrink-0">
+                                    <div class="avatar-initial bg-label-danger rounded">
+                                        <div>
+                                            <img src="/img/dokicon.png" alt="paypal" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                <div class="me-2">
+                                    <h6 class="mb-0">Kebersihan Lingkungan Kerja</h6>
+                                </div>
+                                @{
+                                    string kebersihanlingkungankerja = "";
+                                    if (Model.kebersihanlingkungankerja == "Aman")
+                                    {
+                                        kebersihanlingkungankerja = "mdi-chevron-up text-success";
+                                    }
+                                    else if (Model.kebersihanlingkungankerja == "Tidak Aman")
+                                    {
+                                        kebersihanlingkungankerja = "mdi-chevron-down text-danger";
+                                    }
+                                    else if (Model.kebersihanlingkungankerja == "Tidak Relevan")
+                                    {
+                                        kebersihanlingkungankerja = "mdi-chevron-right text-warning";
+                                    }
+                                    else
+                                    {
+                                        kebersihanlingkungankerja = "mdi-chevron-right text-secondary";
+                                    }
+                                }
+                                <div class="user-progress d-flex align-items-center gap-3">
+                                    <h6 class="mb-0">@Model.kebersihanlingkungankerja</h6>
+                                    <i class='mdi mdi-24px @kebersihanlingkungankerja'></i>
+                                </div>
+
+                            </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-2">
+                            <div class="me-2 pe-1">
+                                <div class="avatar flex-shrink-0">
+                                    <div class="avatar-initial bg-label-success rounded">
+                                        <div>
+                                            <img src="/img/dokicon.png" alt="paypal" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                <div class="me-2">
+                                    <h6 class="mb-0">Kelayakan Peralatan Kerja</h6>
+                                </div>
+                                @{
+                                    string kelayakanperalatankerja = "";
+                                    if (Model.kelayakanperalatankerja == "Aman")
+                                    {
+                                        kelayakanperalatankerja = "mdi-chevron-up text-success";
+                                    }
+                                    else if (Model.kelayakanperalatankerja == "Tidak Aman")
+                                    {
+                                        kelayakanperalatankerja = "mdi-chevron-down text-danger";
+                                    }
+                                    else if (Model.kelayakanperalatankerja == "Tidak Relevan")
+                                    {
+                                        kelayakanperalatankerja = "mdi-chevron-right text-warning";
+                                    }
+                                    else
+                                    {
+                                        kelayakanperalatankerja = "mdi-chevron-right text-secondary";
+                                    }
+                                }
+                                <div class="user-progress d-flex align-items-center gap-3">
+                                    <h6 class="mb-0">@Model.kelayakanperalatankerja</h6>
+                                    <i class='mdi mdi-chevron-down mdi-24px @kelayakanperalatankerja'></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-2">
+                            <div class="me-2 pe-1">
+                                <div class="avatar flex-shrink-0">
+                                    <div class="avatar-initial bg-label-warning rounded">
+                                        <div>
+                                            <img src="/img/dokicon.png" alt="paypal" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                <div class="me-2">
+                                    <h6 class="mb-0">Pengawasan / Supervisi</h6>
+                                </div>
+                                @{
+                                    string pengawasan = "";
+                                    if (Model.pengawasan == "Aman")
+                                    {
+                                        pengawasan = "mdi-chevron-up text-success";
+                                    }
+                                    else if (Model.pengawasan == "Tidak Aman")
+                                    {
+                                        pengawasan = "mdi-chevron-down text-danger";
+                                    }
+                                    else if (Model.pengawasan == "Tidak Relevan")
+                                    {
+                                        pengawasan = "mdi-chevron-right text-warning";
+                                    }
+                                    else
+                                    {
+                                        pengawasan = "mdi-chevron-right text-secondary";
+                                    }
+                                }
+                                <div class="user-progress d-flex align-items-center gap-3">
+                                    <h6 class="mb-0">@Model.pengawasan</h6>
+                                    <i class='mdi mdi-chevron-down mdi-24px @pengawasan'></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-2">
+                            <div class="me-2 pe-1">
+                                <div class="avatar flex-shrink-0">
+                                    <div class="avatar-initial bg-label-primary rounded">
+                                        <div>
+                                            <img src="/img/dokicon.png" alt="paypal" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                <div class="me-2">
+                                    <h6 class="mb-0">Komunikasi Safety</h6>
+                                </div>
+                                @{
+                                    string komunikasisafety = "";
+                                    if (Model.komunikasisafety == "Aman")
+                                    {
+                                        komunikasisafety = "mdi-chevron-up text-success";
+                                    }
+                                    else if (Model.komunikasisafety == "Tidak Aman")
+                                    {
+                                        komunikasisafety = "mdi-chevron-down text-danger";
+                                    }
+                                    else if (Model.komunikasisafety == "Tidak Relevan")
+                                    {
+                                        komunikasisafety = "mdi-chevron-right text-warning";
+                                    }
+                                    else
+                                    {
+                                        komunikasisafety = "mdi-chevron-right text-secondary";
+                                    }
+                                }
+                                <div class="user-progress d-flex align-items-center gap-3">
+                                    <h6 class="mb-0">@Model.komunikasisafety</h6>
+                                    <i class='mdi mdi-chevron-down mdi-24px @komunikasisafety'></i>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xl-4">
+            <div class="row gy-4">
+                <!-- Total Sales -->
+                <div class="col-xl-12 col-md-6">
+                    <div class="card">
+                        <div class="card-body d-flex justify-content-between align-items-center flex-xl-nowrap flex-wrap">
+                            <div class="me-3">
+                                <h5 class="mb-4">Static</h5>
+                                <div class="small mb-1">Aman: @ViewBag.CountAman</div>
+                                <div class="small mb-1">Tidak Aman: @ViewBag.CountTidakAman</div>
+                                <div class="small mb-1">Tidak Relevan: @ViewBag.CountTidakRelevan</div>
+                            </div>
+                            <div id="totalSalesDonutChart" class="mt-3 mt-md-0">
+                            
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            
+               
+          
+                <div class="col-xl-6 col-md-3 col-sm-6">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            @{
+                                string kesimpulanObservasi = Model.kesimpulanObservasi;
+                                string avatarClass = "bg-warning";
+                                string iconClass2 = "mdi mdi-check";
+
+                                if (kesimpulanObservasi == "Aman")
+                                {
+                                    avatarClass = "bg-success";
+                                    iconClass2 = "mdi mdi-check";
+                                }
+                                else if (kesimpulanObservasi == "Tidak Aman")
+                                {
+                                    avatarClass = "bg-danger";
+                                    iconClass2 = "mdi mdi-close";
+                                }
+                                else if (kesimpulanObservasi == "Tidak Relevan")
+                                {
+                                    avatarClass = "bg-warning";
+                                    iconClass2 = "mdi mdi-alert";
+                                }
+                            }
+
+                            <div class="avatar">
+                                <div class="avatar-initial @avatarClass rounded-circle shadow">
+                                    <i class="@iconClass2 mdi-24px"></i> 
+                                </div>
+                            </div>
+
+                            <div class="dropdown">
+                                <small>@Model.kesimpulanObservasi</small>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            
+                            <small>Kesimpulan Observation</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-md-3 col-sm-6">
+                    <div class="card">
+                      
+                        <div class="card-body">
+                            <div class="d-grid">
+
+                                <a class="btn btn-info" href="@Url.Action("EditDataSOT", "CSMS", new { id = Model.Id })">Edit</a>
+                          
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+         
+            </div>
+        </div>
+
+    </div>
+    <hr class="my-2">
+    <h5>Rincian</h5>
+    <div class="d-flex justify-content-start align-items-center user-name">
+        <div class="avatar-wrapper">
+            <div class="avatar avatar-sm me-2"><img src="/img/dokicon.png" alt="Avatar" class="rounded-circle"></div>
+        </div>
+        <div class="d-flex flex-column">
+            <small>@Model.catatan</small>
+        </div>
+    </div>
+
+    <hr class="my-2">
+    <h5>Kesimpulan</h5>
+    <div class="d-flex justify-content-start align-items-center user-name">
+        <div class="avatar-wrapper">
+            <div class="avatar avatar-sm me-2"><img src="/img/dokicon.png" alt="Avatar" class="rounded-circle"></div>
+        </div>
+        <div class="d-flex flex-column">
+            <small>@Model.kesimpulan</small>
+        </div>
+    </div>
+    <hr class="my-2">
+    <h5>Point Pembelajaran</h5>
+    <div class="d-flex justify-content-start align-items-center user-name">
+        <div class="avatar-wrapper">
+            <div class="avatar avatar-sm me-2"><img src="/img/dokicon.png" alt="Avatar" class="rounded-circle"></div>
+        </div>
+        <div class="d-flex flex-column">
+            <small>@Model.pointpembelajaran</small>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+   @*  <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ambil data dari ViewBag
+            const countAman = @ViewBag.CountAman;
+            const countTidakAman = @ViewBag.CountTidakAman;
+            const countTidakRelevan = @ViewBag.CountTidakRelevan;
+
+            // Referensi ke canvas elemen
+            const ctx = document.getElementById('salesDonutChart').getContext('2d');
+
+            // Membuat grafik donut menggunakan Chart.js
+            const salesDonutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Aman', 'Tidak Aman', 'Tidak Relevan'],
+                    datasets: [{
+                        label: 'Safety Observation Tour (SOT) Actions',
+                        data: [countAman, countTidakAman, countTidakRelevan],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',   // Warna untuk Aman
+                            'rgba(255, 99, 132, 0.2)',   // Warna untuk Tidak Aman
+                            'rgba(255, 206, 86, 0.2)'    // Warna untuk Tidak Relevan
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',     // Warna border untuk Aman
+                            'rgba(255, 99, 132, 1)',     // Warna border untuk Tidak Aman
+                            'rgba(255, 206, 86, 1)'      // Warna border untuk Tidak Relevan
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script> *@
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mengambil data dari ViewBag
+            const countAman = @ViewBag.CountAman;
+            const countTidakAman = @ViewBag.CountTidakAman;
+            const countTidakRelevan = @ViewBag.CountTidakRelevan;
+
+            // Debugging
+            console.log('Data for chart:', countAman, countTidakAman, countTidakRelevan);
+
+            // Konfigurasi chart
+            var options = {
+                chart: {
+                    height: 300,
+                    type: 'donut'
+                },
+                series: [countAman, countTidakAman, countTidakRelevan],
+                labels: ['Aman', 'Tidak Aman', 'Tidak Relevan'],
+                colors: ['#4caf50', '#f44336', '#ff9800'],
+                dataLabels: {
+                    enabled: true
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            };
+
+            // Inisialisasi dan render chart
+            var chart = new ApexCharts(document.querySelector("#totalSalesDonutChart"), options);
+            chart.render();
+        });
+    </script>
+}
